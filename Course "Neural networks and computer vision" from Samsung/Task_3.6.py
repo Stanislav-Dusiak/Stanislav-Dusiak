@@ -1,8 +1,11 @@
 import torch
-import random
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_wine
+
+"""https://stepik.org/lesson/205548/step/13?unit=179277"""
+
+"""Neural network for classification problems"""
 
 n_input = 13
 n_hidden = 10
@@ -51,7 +54,7 @@ wine_net = WineNet(n_input, n_hidden)
 loss = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(wine_net.parameters(), lr=1.0e-3)
 
-batch_size = 20
+batch_size = 25
 
 for epoch in range(3000):
     order = np.random.permutation(len(X_train))
@@ -73,7 +76,7 @@ for epoch in range(3000):
     if epoch % 10 == 0:
         test_preds = wine_net.forward(X_test)
         test_preds = test_preds.argmax(dim=1)
-        print((test_preds == y_test).float().mean())
+        print('accuracy:', (test_preds == y_test).float().mean().item())
 print(wine_net.fc1.in_features,
       np.asarray((test_preds == y_test).float().mean()) > 0.8)
 # need to get 13 True
