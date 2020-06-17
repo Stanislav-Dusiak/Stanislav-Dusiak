@@ -1,5 +1,7 @@
 """https://stepik.org/lesson/236236/step/15?unit=208641"""
 
+"""Neural network for regression problems"""
+
 
 import torch
 import matplotlib.pyplot as plt
